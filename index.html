@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>靠谱同行 | 注安陪辅 | 轻量投资</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(180deg, #e8f4fc 0%, #f0f8ff 100%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container { max-width: 480px; margin: 0 auto; position: relative; }
+
+        /* 顶部横幅 */
+        .header-banner {
+            background: linear-gradient(135deg, #1a5fb4 0%, #2d7dd2 50%, #4a9eff 100%);
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .header-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+        }
+        .brand-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        .brand-logo {
+            background: rgba(255,255,255,0.95);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #1a5fb4;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .brand-logo.xingfa { color: #c41e3a; }
+        .main-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        .sub-title {
+            font-size: 18px;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+            z-index: 1;
+        }
+        .year-badge {
+            display: inline-block;
+            background: #ff6b35;
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 核心亮点 */
+        .highlights {
+            padding: 30px 20px;
+            background: #fff;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #1a5fb4;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b35, #ff8c42);
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .highlight-item {
+            background: linear-gradient(135deg, #f0f7ff 0%, #e8f4fc 100%);
+            border-radius: 12px;
+            padding: 18px 12px;
+            text-align: center;
+            border: 1px solid #d0e8ff;
+        }
+        .highlight-icon { font-size: 32px; margin-bottom: 8px; }
+        .highlight-text { font-size: 14px; font-weight: bold; color: #1a5fb4; }
+        .highlight-desc { font-size: 12px; color: #666; margin-top: 4px; }
+
+        /* 课程模块 */
+        .course-section {
+            padding: 30px 20px;
+            background: linear-gradient(180deg, #f8fbff 0%, #fff 100%);
+        }
+        .course-category { margin-bottom: 25px; }
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .category-tag {
+            background: linear-gradient(135deg, #1a5fb4 0%, #2d7dd2 100%);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .category-line {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, #d0e8ff, transparent);
+        }
+        .course-list {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .course-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .course-item:last-child { border-bottom: none; }
+        .course-name {
+            font-size: 15px;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+        .course-name small {
+            font-size: 12px;
+            color: #999;
+            font-weight: normal;
+            display: block;
+            margin-top: 2px;
+        }
+        .course-desc {
+            font-size: 13px;
+            color: #666;
+            flex: 1;
+            margin: 0 10px;
+        }
+        .course-hours {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1a5fb4;
+        }
+        .course-hours span {
+            font-size: 12px;
+            color: #999;
+            font-weight: normal;
+        }
+
+        /* 面授信息 */
+        .offline-section {
+            padding: 30px 20px;
+            background: #fff;
+        }
+        .offline-card {
+            background: linear-gradient(135deg, #fff5f0 0%, #fff 100%);
+            border: 2px solid #ff8c42;
+            border-radius: 16px;
+            padding: 20px;
+        }
+        .offline-item {
+            display: flex;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+        .offline-item:last-child { margin-bottom: 0; }
+        .offline-label {
+            font-weight: bold;
+            color: #ff6b35;
+            min-width: 50px;
+            font-size: 15px;
+        }
+        .offline-value {
+            color: #333;
+            font-size: 15px;
+            flex: 1;
+        }
+
+        /* 导航面板 */
+        .nav-panel {
+            margin-top: 12px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 16px;
+            display: none;
+        }
+        .nav-panel.active { display: block; }
+        .nav-info {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+        .nav-info strong { color: #1a5fb4; }
+        .copy-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .copy-input {
+            flex: 1;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 14px;
+            color: #333;
+        }
+        .copy-btn {
+            background: linear-gradient(135deg, #1a5fb4 0%, #2d7dd2 100%);
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .copy-btn:active { transform: scale(0.98); }
+        .browser-tip {
+            background: #fff3e0;
+            border-left: 3px solid #ff9800;
+            padding: 10px 12px;
+            border-radius: 0 8px 8px 0;
+            font-size: 12px;
+            color: #e65100;
+            margin-top: 10px;
+        }
+        .nav-toggle {
+            display: inline-block;
+            background: #1a5fb4;
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+        .nav-toggle:active { transform: scale(0.98); }
+
+        /* 价格 */
+        .price-section {
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #1a5fb4 0%, #2d7dd2 100%);
+            text-align: center;
+        }
+        .price-title {
+            font-size: 20px;
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .price-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 16px;
+            padding: 25px;
+            max-width: 340px;
+            margin: 0 auto;
+        }
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        .price-item:last-child { border-bottom: none; }
+        .price-type { font-size: 16px; color: #333; }
+        .price-amount {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ff6b35;
+        }
+        .price-amount span {
+            font-size: 14px;
+            color: #999;
+            font-weight: normal;
+        }
+        .price-note {
+            font-size: 13px;
+            color: #666;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        /* 底部报名 */
+        .footer-signup {
+            padding: 30px 20px;
+            background: #fff;
+            text-align: center;
+        }
+        .footer-contact {
+            background: linear-gradient(135deg, #f0f7ff 0%, #e8f4fc 100%);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        .footer-phone {
+            font-size: 32px;
+            font-weight: 800;
+            color: #ff6b35;
+            letter-spacing: 2px;
+        }
+        .footer-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1a5fb4;
+            margin: 10px 0 5px;
+        }
+        .footer-wechat { font-size: 14px; color: #666; }
+        .btn-form {
+            display: block;
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+            color: #fff;
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px auto 10px;
+            max-width: 280px;
+            box-shadow: 0 4px 15px rgba(255,107,53,0.3);
+        }
+        .btn-form:active { transform: scale(0.98); }
+        .footer-note {
+            font-size: 12px;
+            color: #999;
+            margin-top: 15px;
+        }
+
+        /* 备注 */
+        .note-section {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            font-size: 13px;
+            color: #888;
+            text-align: center;
+        }
+
+        /* 浮动按钮 */
+        .float-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 15px;
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(255,107,53,0.4);
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部横幅 -->
+        <div class="header-banner">
+            <div class="brand-logos">
+                <div class="brand-logo xingfa">兴发集团</div>
+                <div style="color:#fff;font-size:20px;">×</div>
+                <div class="brand-logo">嗨学</div>
+            </div>
+            <div class="main-title">中级注册安全工程师</div>
+            <div class="sub-title">考前培训</div>
+            <div class="year-badge">2026考季</div>
+        </div>
+
+        <!-- 核心亮点 -->
+        <div class="highlights">
+            <div class="section-title">四大核心优势</div>
+            <div class="highlight-grid">
+                <div class="highlight-item">
+                    <div class="highlight-icon">🤖</div>
+                    <div class="highlight-text">AI学霸助手</div>
+                    <div class="highlight-desc">众多AI功能助力学习</div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">👨‍🏫</div>
+                    <div class="highlight-text">双轨名师教学</div>
+                    <div class="highlight-desc">行业大咖名师保障</div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">📚</div>
+                    <div class="highlight-text">2000+题库</div>
+                    <div class="highlight-desc">丰富考前资料多端同步</div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">🚀</div>
+                    <div class="highlight-text">腾飞班资源</div>
+                    <div class="highlight-desc">享受兴发内部学员课程</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 线上课程 -->
+        <div class="course-section">
+            <div class="section-title">线上课程体系</div>
+
+            <div class="course-category">
+                <div class="category-header">
+                    <span class="category-tag">名师精讲通关</span>
+                    <span class="category-line"></span>
+                </div>
+                <div class="course-list">
+                    <div class="course-item">
+                        <div class="course-name">教材考点精讲</div>
+                        <div class="course-desc">夯实基础，系统梳理</div>
+                        <div class="course-hours">35<span>h</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-category">
+                <div class="category-header">
+                    <span class="category-tag">核心提升</span>
+                    <span class="category-line"></span>
+                </div>
+                <div class="course-list">
+                    <div class="course-item">
+                        <div class="course-name">案例精通<small>（附加带记带练）</small></div>
+                        <div class="course-desc">专攻实务核心难关，系统拆解命题逻辑与答题框架</div>
+                        <div class="course-hours">15<span>h</span></div>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-name">选择精练<small>（附加带记带练）</small></div>
+                        <div class="course-desc">高强度精准训练攻克实务选择题典型易错点</div>
+                        <div class="course-hours">9<span>h</span></div>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-name">超纲精进</div>
+                        <div class="course-desc">突破考纲边界，聚焦前沿实务与深度难点</div>
+                        <div class="course-hours">3<span>h</span></div>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-name">简答速记</div>
+                        <div class="course-desc">聚焦简答题型核心采分点，提供记忆模</div>
+                        <div class="course-hours">1<span>h</span></div>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-name">分析速成</div>
+                        <div class="course-desc">专攻题目分析与信息拆解能力</div>
+                        <div class="course-hours">6<span>h</span></div>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-name">案例速通</div>
+                        <div class="course-desc">综合案例的通关能力</div>
+                        <div class="course-hours">3<span>h</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-category">
+                <div class="category-header">
+                    <span class="category-tag">考前冲刺</span>
+                    <span class="category-line"></span>
+                </div>
+                <div class="course-list">
+                    <div class="course-item">
+                        <div class="course-name">私塾密训</div>
+                        <div class="course-desc">行业顶尖双师授课，内容兼具深度和前沿广度的考前私教体验</div>
+                        <div class="course-hours">6<span>h</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-category">
+                <div class="category-header">
+                    <span class="category-tag">选修模块</span>
+                    <span class="category-line"></span>
+                </div>
+                <div class="course-list">
+                    <div class="course-item">
+                        <div class="course-name">重难点专项<small>（录播）</small></div>
+                        <div class="course-desc">针对重难点专项课程</div>
+                        <div class="course-hours">3<span>h</span></div>
+                    </div>
+                    <div class="course-item">
+                        <div class="course-name">3D实景课堂</div>
+                        <div class="course-desc">行业首创，3D实景讲解考点易于直观理解，高效学习</div>
+                        <div class="course-hours">2<span>h</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="note-section">
+            注：科目不同模块有一定差异，但是功能效果类似，涵盖3科公共/7科专业课
+        </div>
+
+        <!-- 线下面授 -->
+        <div class="offline-section">
+            <div class="section-title">线下面授安排</div>
+            <div class="offline-card">
+                <div class="offline-item">
+                    <span class="offline-label">时间：</span>
+                    <span class="offline-value">预计7月/10月组织安排2轮精品面授，每轮2天/科</span>
+                </div>
+                <div class="offline-item">
+                    <span class="offline-label">内容：</span>
+                    <span class="offline-value">管理、技术、法规+化工安全、金属非金属矿</span>
+                </div>
+                <div class="offline-item">
+                    <span class="offline-label">地点：</span>
+                    <span class="offline-value">
+                        兴发集团培训中心（白洋园区）<br>
+                        宜昌市高新区白洋镇洋城大道18号<br>
+                        <button class="nav-toggle" onclick="toggleNav()">📍 查看导航方式</button>
+                        <div class="nav-panel" id="navPanel">
+                            <div class="nav-info">
+                                <strong>方式一（推荐）：</strong>复制下方地址，打开高德/百度地图APP粘贴搜索<br>
+                                <strong>方式二：</strong>点击右上角 ⋮ → 选择"在浏览器打开"，即可直接唤起地图导航
+                            </div>
+                            <div class="copy-row">
+                                <input class="copy-input" id="addrInput" value="宜昌市高新区白洋镇洋城大道18号" readonly>
+                                <button class="copy-btn" onclick="copyText('addrInput')">复制地址</button>
+                            </div>
+                            <div class="copy-row">
+                                <input class="copy-input" id="coordInput" value="111.55,30.43" readonly>
+                                <button class="copy-btn" onclick="copyText('coordInput')">复制坐标</button>
+                            </div>
+                            <div class="browser-tip">
+                                💡 提示：若您使用手机自带浏览器（Safari/Chrome）打开本页面，点击导航链接可直接唤起手机中的高德/百度地图APP。
+                            </div>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 价格 -->
+        <div class="price-section">
+            <div class="price-title">💰 企业专属价</div>
+            <div class="price-card">
+                <div class="price-item">
+                    <span class="price-type">线上课程</span>
+                    <span class="price-amount">400<span>元/科</span></span>
+                </div>
+                <div class="price-item">
+                    <span class="price-type">线下面授</span>
+                    <span class="price-amount">400<span>元/科</span></span>
+                </div>
+                <div class="price-note">根据培训意愿分别报名，灵活选择</div>
+            </div>
+        </div>
+
+        <!-- 底部报名 -->
+        <div class="footer-signup">
+            <div class="section-title">立即报名</div>
+            <div class="footer-contact">
+                <div class="footer-name">许老师</div>
+                <div class="footer-phone">15071760641</div>
+                <div class="footer-wechat">微信同号 · 欢迎咨询</div>
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAAEERJREFUeF7tXWuwjtUX3wxlDIpCCCEljBJRxi3D8AEfNJqRTLmVZhJTzKRQ5PKBQYzijPrgPlIfXKZGyOUDud/KjKIxQ25NKY1hiP/89nv2/i/7PM9+997nPc/7nPOu9ek859nPvqy93rXWXrdd6e7du3cFQ8FioBITQMHuvVw4E0Bh7z8TQIHvPxMAEwArgQVNA6wDFPT2sxJY4NvPBMAEwHaAwqYB1gEKe//5GFjg+88EwAQQYAe4fv262LdvX5nirmfPnrr/s2fPit9++00+V65cWXTv3t177H///VccOHAg8rs6deqIdu3a6Xdoh/aA+vXri6eeesppvF27dok7d+7Its2aNRNNmzbV3+3YscOpj9BGnTp1EtWrV/f+PEgH+Pnnn0WbNm28B/P54J9//hE1a9aUn3zyySdi6tSp8u/77rtP3Lx506cr2fbw4cPi2WefjfyuT58+YsuWLfrdM888I44ePSqfhwwZIlavXu00HuZ269YtPefJkyfLv7GWBx54wKmP0EbYE1dCpWMwAQghmAA8yY45QDTCCoYDnDx5UrRu3VpjYdasWeKFF17wJKN7m2/YsEHMnz9f//PatWuiRo0a8nnGjBliypQp+l2c2nLlyhUxePDgyHlAph88eDDyXe3ate/RAcaMGSMeeeQR2fbEiRNi/fr1+ruvv/5aPPTQQ/L5m2++EQsXLtTvdu7cqf+G2FIiAGupVauWfvfee++J/v37lwpfe/bsER988IHuA3vSqlUr7z5zIgI2btxY6gUtWbJEvPXWW3oBITrAuXPnROPGjb2RYH4AfQF6AADyf+jQoboJxmjUqJF8/vTTT8X48eMjx6MEYOoAWOubb75ZqnkC5wMHDtR95FUHYAIouZcVmgBMEUAJ4O+//5Yatws8//zzolq1arKpyQFsIuCHH37Q3bds2VL/Ik0RgHlevnxZtoU46dChg/7u2LFj4q+//pLPpghYtmyZePzxx+W7NWvWiFdeeUV/9/vvv4sGDRrI50WLFol33nlHv8PxtFKlSvJ55MiRYtiwYfJvUwQUFRWJ0aNHy3c3btwQe/fudUGXaN++vT5NbNq0SQwYMEB/lxoRADlIz/C2lZ0+fVo0b948kgDiRIDZH9gw3QT6Hke4tWvXyn+BpVPChOa/detW+c48BdA+fEQAjqdQBE2wiQDgQBFbNioAbpUNJLUigAmACYA5gPFTrnAcwKYD7N6929lUe+bMGWkyBfjoABS/YJ9KK69bt6746quv9Gto78qKBysgPQZCB/jzzz9lW9MUPGrUKPHrr7/KdzARDxo0SPdJxdv58+fFL7/8ot/huHr79m0vHQAmbiUGs4kAmJq7desmm7EOEIEtEAKOaQpsOoAN2WVtCqbHQNYBSqkE0o1kAnBzWlGcBRmCkhYBK1asEF988YWcN6yAYIVRYBKATQTYOAAVAb1799YWvWwsWh0B0c5mCaTHQBYBDhyAIh5HLWU7MDckVxwg20bHvXf1BbAIKMagqx2ACSCDgYK1AzABpIwAkjYFh+oAmOelS5ck9hBcQk3BrjqA2c7mDUTQCiKWADQiqKBMwaHy09UbaOvf1AFC50KPgWYfNm9giCk4dI6pNQWHLogJwA9zqSIAGFyeeOIJvxUYrRGIuXnzZv1fmzfwo48+0u2+/fZbHaBqcgCw6+PHj8u28OBRHzzECpRQQIsWLbTnDs+UA7Rt21a89NJLejwc9VRACv3bXHyvXr20RdQ0BSMYxFUcxSH11KlT0lOpIK/ewFLtfMzHrgEh8ATCLQvwOQbavIE2SyDGgEsYgLHhjVTgegwsC3zlNSCkLBbEBOCHVSYA5gDJhYX70WbZtqYiwBwJnkDoJwAzLwB5ABAD2cAnIIT2RU3B2cbI5/sgX0A+J2yOzQRQut1gAsiCP+YAEQhC8OXixYsjUffYY4+J119/PfIdFJV169Y5kezHH3/s1I5yAFj73n33Xf0dPaZdvHhRLF26VL/7/vvvBTx9ABwHcSxUQPMCTAJA/yplzTwGTps2TfdhEwEI5lB5ighGoTGNwA/w5Atvv/22ePjhh30/C8sOtmUGIWiRJkjQGSHBIi5xw5w5PQXYVuV6DDT7oDoA/u7bt69uYssLoP24HgPNsWGPgEsYgGggZY/AM2wOSDjxhdScApgASiaHMgEUY4A5QAYRFY4D0MQQMywcSQ+dO3eO5GhgfyrvH0iBP0AB5KzK0UeOHWRqacCWHm72S0WAz5jUEujzXS7a5lUEMAFktpAJoDhqhYZOMwfIxe87ex955QDUG2gejWweMzhSrl69KlcH7xhNmXb1ulHUIAWbHgPpOxwDqYih76CFr1y5MvIUAG8ivIpRgNzGfv366VcQU//995983r59u0CORBRUaG+geQqA/A+pJ+SaG0gRHBoQkqtjIJ0L9JaZM2dGEkCFSw+nq2QCyGCDCaCYKpgDlGQC5Z4DmEuCTFPRPKGGINsx0KYC5SI9PLuK9f8WuYgJpOPZLIH48dDaAcBtnF6RqBLIBBBdIsY1KJQJIOInxxwggxTqCyiXHKBHjx4iriqmzRSMoE0aWBrnUAKSXEvEwPGkCloiP+Dzzz/XpEdLxPiIAFRDU1VAkB6u0sjRh63oKsXJvHnzBIxnAASk0j5++uknAW8rAMdaWtwSuFV5kV26dLnnlJFopdCyEAGum2CrFGpWCbNFBLmO59MuTgSYfdh8AbbxqA4AvUsRkc8czbY5CQjJhRLouggmgIxxKbUE8PTTT4sFCxbo/YSFTwVQgK3TmP4ff/xRVskCmCIgjiBAALSuL9inKgoB4xHYqwKbCKD9o1oYRIICzFkVqUSVMcTcK6AiwJxjXGoY2sWJgIYNG4pVq1Y50f+4ceP0PFMrAsyVhPoCnDBSHJsfkhdA+/exBNJjoDnHgskLsOkATAAFUC2cCSBjByhYDoALHF577TW9flTSjMsNtOkAqLP74IMPyn4QJIlgSV+ADoDjmAIclRTYKoXadAAaEGKrFGrONa5EjE0H8FkvrJ7qYotyWSzatAPYKoT4ICbXbV2LRbtyALMdPQb6zL1cVAixLYgJIIOdck8ApgiYPXt27H0Bhw4dklemAEDBNN6fForEfQH0CGezBLr+anCFSr169WRz874AsFIUiY4C12LRtkKRND28SpUqomvXrnoorBPrBeAYjOOwAlgu4+L7R4wYIZo0aSKb5lUEuG4A2tncwVQEmH3SoFCf8WjbpHMDqSWQxgNgLepHYK7FLBQJLknrEdD2qfUG2jaICSBTn4gJIIJKmANk0tJoufhywQFMHcDGAd544w0Bc6evDvDhhx+KqlWryu+Qt/fll1/qYag3EFZAlUoF2UmLReP/ysRr6gA0N9CcP60UajMF27yBVATAq4eLNKLAvDACJWnidIDUeAN9bg2jpmCfU0CuK4SYyLfVB7BVCbMRe4gO4KPfpMYbyAQQvW0FQwBmoUiwLXWVGljdkSNHNIYQEv7cc89pEUC9gbCyqft3zGMgFQGIg9u2bZvsA2IB7xR89913Om7OvC8A9fvVtTCmCJg7d25spS4EbSKPwBeoxw/FrVXKOWobv//++7q7J598Uq/bdmdQagNCTA4QmhpmQ3BcbqBZLNoWFEr7TyI3MG49oTeGpDYkjAnAjzcwAcRkBzMHKHkMpDhJLQfwo3+31rZSsW49hLeyBYT49JqL7GBqB8AJil7JmxpnkA9SXNsyAWQwxQRQTDGuNYJcCczWjjlALrAY0wc8a/QmL9oMQY7KI2cGhFCvIWLhkW6dDcz0cNdi0WZ6ONy16vbwbGPS97RK2Isvvhh7fR4CX+JuMsec1TV1wBvwFwV5LRbtg5RQZxAdA3n3iLjNBqHForP1G/LeVibOFg9QLnwBPghhAiiJLSaAYpzYvIHMAUoSTmriAXwKRVIOgEAHsDgFtEqYuVxXZxD9LjQ1zOf2cDqerVCkD5eMa2vaAWi7VN0YQidmqxDCBOBHFkwANWtKjFElsCxyA5kD+BGmTF92LRZNj4GtW7cWL7/8sh4Njhzk5UUBPQbCqzdlyhTdjKZh484gGlRJ+wqpNGbOBVXCaO1e12LRtmMgHQPrX7hwof4X8INgVsCjjz4qEJwSBXm9PdyTXkrd3MYBXItFI8gDHsEoMA1BtgnbSsSYiiuigrKBT0hYanSAbIvK9XsmgJIYzasSmOsNztYfE0DKCMAnJCzb5sa9D/EFmMfA0LFdU8OgwyC/MQqoJTA0HsDsNzXeQCaA6CphcToAE0DAT5E5QEmkpZYDlPXVsa7eQBDN/PnzNeZgeELAKsC8M2jYsGHyuhaArVh0ru4MosfaAQMG6IBU5EeiUpgCegw0SWD48OGiadOm8t/wBmJuCvJ6ZxANCg34sctPcnF5tDm2a26gT4kYOkbonUG0j9BjYCieze+CqoTZgkJDJ8YEkMGczR0cilvbd0EEYOYFUA6AvIA4g4s5EdTbR8x8FAew3R5uWxCtEEKrhKGSyOjRo/WnNDUMwSgTJkzQ7+i1cchHgCUyCiBiwHoVwPqnAKncEDPZ4MKFCwIVVhRMnz5ddOvWTT6aeQHZ+gp5H0QAPmHhtknZKoTk4r4A6CZr166NnEJZpIaFbIDtG5szKFdjMQFEYDI0NzBXm6L6YQKI8AbakGwLCTO/Yw6QwUgQB7DpAMjjQ0yAC9ASMaYSSHUApKOr6+Vu3759z63fY8eO1UGU999//z1x9JgnikQDTB3AViKG6gAu64jSAeh31atX1/cp+PRn0wFQImbSpEm6u+XLl+vyMT5jBBFA0joAXVCacwPjEkNsFUJ8Nou2zasziAkgetsKhgCSFgEmumlBRpsIoN9BBMQFV5jFoqkzCBVCXG/zpsdAOratQoi5NnpfgI075LVKWJo4AEVS0tfGubJvHxFQLm8Pt9UHsCHJ1Q5g0wGYADIYSPTSKOYArr/9TLsKxwGSNgWj1ApKrgAQEKruzcGzTQegJWJQzLqoqEjv3MSJE8X+/fvlM8q0vfrqq/pdx44d9YURZrFo2OpVORyTDOJMwWalUPodTMGwWCqADvDHH3/IRwSHfvbZZ/odvTDCHBt70qpVKz/KDLUDpMkZlIt7A33CwkMujMgmBmmdQNo2tQUimAD87guocARgioBZs2bFFot25UmoEkaDOVy9gYiphxhQQCt10UKRKFaJopUKIALgBQSA5c+ZM8dbBCBun/566fE01BtIi0Ujj4KKAFooEmJIBbtg4nm1BLpusk87V28gFQGhuYHmvGxBobRtWeQGuqaH5/XWsKSDQm31AZgAfH5WJdvmxBdQuilEf80coCReUlMq9vr16wIVQMsSevbsqbun3kBzzJYtWwpYAKN0AMhQemGEkvnZ5k2PgTZTsKkD4Hh6586dbN1b39uKRaMC69WrV+X3KChNdYDQQYM4QOhg/F36MMAEkL49SXRGTACJojt9gzEBpG9PEp0RE0Ci6E7fYEwA6duTRGfEBJAoutM3GBNA+vYk0RkxASSK7vQNxgSQvj1JdEZMAImiO32DMQGkb08SnRETQKLoTt9g/wP8kFu8wfxxgQAAAABJRU5ErkJggg==" alt="报名二维码" style="width:140px;height:140px;margin:15px auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                <div style="font-size:13px;color:#888;">微信扫码直接报名</div>
+            </div>
+            <a href="https://wj.qq.com/s2/26648394/5a79/" class="btn-form">填写报名表</a>
+            <div class="footer-note">兴发集团 · 嗨学 联合出品</div>
+        </div>
+    </div>
+
+    <!-- 浮动报名按钮 -->
+    <a href="https://wj.qq.com/s2/26648394/5a79/" class="float-btn">立即报名</a>
+
+    <script>
+        function toggleNav() {
+            var el = document.getElementById('navPanel');
+            el.classList.toggle('active');
+        }
+        function copyText(inputId) {
+            var input = document.getElementById(inputId);
+            input.select();
+            input.setSelectionRange(0, 99999);
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(input.value).then(function() {
+                    alert('已复制：' + input.value);
+                });
+            } else {
+                document.execCommand('copy');
+                alert('已复制：' + input.value);
+            }
+        }
+    </script>
+</body>
+</html>
